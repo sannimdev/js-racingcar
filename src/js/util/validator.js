@@ -8,11 +8,21 @@ import { removeSpaces } from './string.js ';
  */
 
 /**
+ * @param {string} names
+ * @return {string[]}
+ */
+export const getCarNamesArray = (names) => {
+  return removeSpaces(names).split(',');
+};
+
+/**
  *
  * @param {string[]} names
  * @returns {boolean}
  */
-export const isEmptyNames = (names) => names.length === names.filter((name) => !!removeSpaces(name)).length;
+export const isEmptyNames = (names) => {
+  return names.length !== names.filter((name) => !!name).length;
+};
 
 /**
  *
@@ -21,7 +31,9 @@ export const isEmptyNames = (names) => names.length === names.filter((name) => !
  */
 export const isMetNamesLength = ({ name, minLength, maxLength }) => {
   const { length } = name;
-  return !((minLength && minLength > length) || (maxLength && maxLength < length));
+  if (minLength && maxLength) return length >= minLength && length <= maxLength;
+  if (minLength) return length >= minLength;
+  return length <= maxLength;
 };
 
 /**

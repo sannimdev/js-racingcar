@@ -1,3 +1,4 @@
-import { testGenerateRandomNumber } from './service/index.js';
+import { initialize, setListeners } from './ui/index.js';
 
-console.log(testGenerateRandomNumber());
+initialize();
+setListeners();
